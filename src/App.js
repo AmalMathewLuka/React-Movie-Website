@@ -89,7 +89,8 @@ function App() {
   
 
   const addToFavorites = (movie) => {
-    setFavorites([...favorites, movie]);
+    const isExisting = favorites.find((data) => data.imdbID === movie.imdbID);
+    if (!isExisting) setFavorites([...favorites, movie]);
   };
 
   const showFavorites = () => {
@@ -99,8 +100,12 @@ function App() {
   };
 
   const fetchData=async(searchString)=>{
-    const response=await axios.get(`https://www.omdbapi.com/?s=${searchString}&apikey=${API_KEY}`);
-    updateMovieList(response.data.Search);
+    if (searchString.length > 3) {
+      const response = await axios.get(
+        `https://www.omdbapi.com/?s=${searchString}&apikey=${API_KEY}`
+      );
+      updateMovieList(response.data.Search);
+    }
   }
 
   const onTextChange=(event)=>{
@@ -135,7 +140,7 @@ function App() {
   />
 )}    
  <MovieListContainer>
-        {movieList?.length ? (
+        {movieList?.length ? 
           movieList.map((movie, index) => (
             <MovieComponent
               key={index}
@@ -143,9 +148,8 @@ function App() {
               onMovieSelect={onMovieSelect}
             />
           ))
-        ) : (
-          <placeholder src="/react-movie-app/movie-icon.svg" />
-        )}
+        :null
+      }
      </MovieListContainer>
 
      {favorites.length > 0 && (
