@@ -2,6 +2,15 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+
+
+#PROJECT SUMMARY 
+*This is a web application for a movie database. The application  allow users to search for movies, view movie details, and add movies to a favorites list. The application is built using React and consume data from an external API.
+*Favorite list will be visible on the bottom of the main page.
+*Responsive design 
+
+
+
 ## Available Scripts
 
 In the project directory, you can run:
